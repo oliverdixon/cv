@@ -1,7 +1,10 @@
 Oliver Dixon's curriculum vitae, mainly used for applying to placement positions
-in The Department of Computer Science at The University of York.
+as an undergraduate student of The Department of Computer Science at The
+University of York.
 
 NOTE: This document requires some vector icons which are not included in the
 public version of this repository. If you would like to compile the TeX
-yourself, you will need to supply icons/{github,internet,telephone,email}.pdf.
+yourself, you will need to supply 'icons/{github,internet,telephone,email}.pdf'.
+The attribution and licensing information for the SVG forms of the intended
+icons can be found in 'icons/attributions'.
 
