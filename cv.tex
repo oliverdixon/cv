@@ -5,6 +5,7 @@
 
 \usepackage[a4paper]{geometry} % Use correct margin sizes for A4 paper
 \usepackage{setspace} % Custom line spacing
+\usepackage[en-GB]{datetime2} % Regional formatting of \today
 \usepackage{graphicx} % Graphics support for the social icons
 \usepackage{fancyhdr, lastpage} % Header and footer formatting
 \usepackage[
@@ -12,17 +13,41 @@
         allcolors  = blue
 ]{hyperref}
 
-\setstretch{1.1}
+\setstretch{1.1} % Marginally greater line spacing improves readability
+
+% Do not indent new paragraphs. This is usually poor style, but since we are
+% preferring lists (which have their own vertical spacing) over paragraphs for
+% separation of prose, a non-zero \parindent would require excessive \noindent
+% invocations.
+\setlength{\parindent}{0pt}
+
+\newlength{\socialsep}
+\setlength{\socialsep}{.3\baselineskip}
+
+% Included social icons may have a page group defined; these will not clash with
+% the master document page groups, so it is safe to suppress this warning.
 \pdfsuppresswarningpagegroup=1
+
+% Remove number printing; preserve the hyperref index and TOC
 \renewcommand{\thesection}{\hspace{-1em}}
+
+% Make bullet points slightly smaller
 \renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
+% The 'body' style decorates all pages past the first page.
 \renewcommand{\footrulewidth}{.4pt}
+\makeatletter
 \fancypagestyle{body}{%
 	\fancyhf{}
         \renewcommand{\headrulewidth}{\footrulewidth}
+        \fancyhead[L]{\@title}
+        \fancyhead[R]{\yorkemail{\@author}{od641}}
+        \fancyfoot[L]{\today}
         \fancyfoot[R]{Page \thepage{} of~\pageref{LastPage}}
 }
+\makeatother
+
+% The 'title' style decorates only the title page; only the header is omitted.
 \fancypagestyle{title}{%
         \fancyhead{}
         \renewcommand{\headrulewidth}{0pt}
@@ -30,8 +55,6 @@
 
 \title{Curriculum Vitae}
 \author{Oliver Dixon}
-
-\setlength{\parindent}{0pt}
 
 % \sociallink: include a social link with a small icon
 %
@@ -41,49 +64,74 @@
 %
 \newcommand{\sociallink}[3]{%
         \raggedleft
-        {\large \href{#3}{#2}}
-        \hspace{1pt}
-        \begingroup
-        \setbox0=\hbox{%
-                \includegraphics[width=.8em]{icons/#1}
+        {%
+                \large
+                \href{#3}{#2}%
+                \hspace{.8em}%
+                \begingroup
+                \setbox0=\hbox{\includegraphics[width=.8em]{icons/#1}}%
+                \parbox{\wd0}{\box0}
+                \endgroup
         }%
-        \parbox{\wd0}{\box0}
-        \endgroup
-
-        \raggedright
+        \par
 }
 
+% \yorkemail: expand to a clickable mailto URL of a York e-mail address
+%
+%       #1: The display name;
+%       #2: The York username.
+%
+\newcommand{\yorkemail}[2]{%
+        #1
+        \textless%
+        \href{mailto:#2@york.ac.uk}{\texttt{#2@york.ac.uk}}%
+        \textgreater
+}
+
+% \midtilde: display a vertically centered text-mode tilde
 \newcommand{\midtilde}{\raisebox{.5ex}{\texttildelow}}
+
+% \textline: draw a black horizontal rule across the writeable page width
 \newcommand{\textline}{\par\rule{\textwidth}{\footrulewidth}}
 
 \begin{document}
+%
 \thispagestyle{title}
 \pagestyle{body}
+%
+% MAJOR SECTION: TITLE AND METADATA HEADER
+%
 \begin{center}
         \Large
         \makeatletter
         \textbf{\@author} \hfill
         \sociallink{github}{github.com/oliverdixon}%
                 {https://github.com/oliverdixon}
-
-        \hspace{-2pt}\textit{\@title} \hfill
-        \sociallink{internet}{www-users.york.ac.uk/\midtilde{}od641}%
-                {https://www-users.york.ac.uk/~od641}
         \makeatother
-
-        \vspace{.5\baselineskip}
         \large
+
+        \vspace{\socialsep}
+        \hfill \sociallink{internet}{www-users.york.ac.uk/\midtilde{}od641}%
+                {https://www-users.york.ac.uk/~od641}
+
+        \vspace{\socialsep}
         7 Monkton Road, York, YO31 9AJ \hfill
         \sociallink{telephone}{+44 (0) 7341416944}{tel:+447341416944}
 
-        \vspace{.2\baselineskip}
-        Mathematics \& Computer Science Student\hfill
+        \vspace{\socialsep}
+        Mathematics \& Computer Science Student \hfill \hspace{5pt}
         \sociallink{email}{od641@york.ac.uk}{mailto:od641@york.ac.uk}
 \end{center}
 \textline
+%
+% MAJOR SECTION: SUMMARY
+%
 \section{Summary}
 TODO
 
+%
+% MAJOR SECTION: EDUCATION
+%
 \section{Education}
 \begin{itemize}
         \item \textbf{2022--Present, University of York (MMath)}
@@ -111,10 +159,21 @@ TODO
         \end{itemize}
 \end{itemize}
 
+%
+% MAJOR SECTION: TECHNICAL SKILLS
+%
 \section{Technical Skills}
+Whilst I am constantly concerned with the continual development of my commercial
+and managerial aptitude, a wide variety of experiences have allowed me to
+ascertain a significant set of skills bound to be invaluable to any employer:
+
 TODO
 
+%
+% MAJOR SECTION: REFERENCES
+%
 \section{References}
 References are available on request.
+%
 \end{document}
 
