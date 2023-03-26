@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\usepackage[a4paper]{geometry}
+\usepackage{setspace}
+\usepackage{xcolor, graphicx}
+\usepackage{textcomp}
+\usepackage{fancyhdr, lastpage}
+\usepackage[
+        colorlinks = true,
+        allcolors  = blue
+]{hyperref}
+
+\setstretch{1.1}
+\pdfsuppresswarningpagegroup=1
+
+\renewcommand{\footrulewidth}{.4pt}
+\fancypagestyle{body}{%
+	\fancyhf{}
+        \renewcommand{\headrulewidth}{\footrulewidth}
+        \fancyfoot[R]{Page \thepage{} of~\pageref{LastPage}}
+}
+\fancypagestyle{title}{%
+        \fancyhead{}
+        \renewcommand{\headrulewidth}{0pt}
+}
+
+\title{Curriculum Vitae}
+\author{Oliver Dixon}
+
+\setlength{\parindent}{0pt}
+
+% \sociallink: include a social link with a small icon
+%
+%       #1: The platform identifier, used for resolving the icon file path;
+%       #2: The display text for the hyperlink;
+%       #3: The hyperlink destination.
+%
+\newcommand{\sociallink}[3]{%
+        \raggedleft
+        {\large \href{#3}{#2}}
+        \hspace{1pt}
+        \begingroup
+        \setbox0=\hbox{%
+                \includegraphics[width=.8em]{icons/#1}
+        }%
+        \parbox{\wd0}{\box0}
+        \endgroup
+
+        \raggedright
+}
+
+\newcommand{\midtilde}{\raisebox{.5ex}{\texttildelow}}
+\newcommand{\textline}{\par\rule{\textwidth}{\footrulewidth}}
+
+\begin{document}
+\thispagestyle{title}
+\pagestyle{body}
+\begin{center}
+        \Large
+        \makeatletter
+        \textbf{\@author} \hfill
+        \sociallink{github}{github.com/oliverdixon}%
+                {https://github.com/oliverdixon}
+
+        \hspace{-2pt}\textit{\@title} \hfill
+        \sociallink{internet}{www-users.york.ac.uk/\midtilde{}od641}%
+                {https://www-users.york.ac.uk/~od641}
+        \makeatother
+
+        \vspace{.5\baselineskip}
+        \large
+        7 Monkton Road, York, YO31 9AJ \hfill
+        \sociallink{telephone}{+44 (0) 7341416944}{tel:+447341416944}
+
+        \vspace{.3\baselineskip}
+        Mathematics \& Computer Science Student\hfill
+        \sociallink{email}{od641@york.ac.uk}{mailto:od641@york.ac.uk}
+\end{center}
+\textline
+\end{document}
+
