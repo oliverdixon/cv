@@ -1,6 +1,15 @@
 % Oliver Dixon's Curriculum Vitae (Public Copy)
 % OWD, 2023
 
+% TODO: Add module grades before submitting to FastTrack.
+% TODO: My address will probably have changed by the time I start applying.
+% TODO: Write the summary
+
+% \loop\iftrue
+%         \errmessage{Are you sure that you want to TeX my CV? :)}%
+%         \repeat
+% \pausing1
+
 \documentclass{article}
 
 \usepackage[a4paper]{geometry} % Use correct margin sizes for A4 paper
@@ -63,7 +72,7 @@
 %       #3: The hyperlink destination.
 %
 \newcommand{\sociallink}[3]{%
-        \raggedleft
+        \raggedleft%
         {%
                 \large
                 \href{#3}{#2}%
@@ -85,8 +94,19 @@
         #1
         \textless%
         \href{mailto:#2@york.ac.uk}{\texttt{#2@york.ac.uk}}%
-        \textgreater
+        \textgreater%
 }
+
+% \githublink: expand to a clickable link to the ... GitHub ...\ site
+% \gistlink  : ... GitHub Gist ...
+% \weblink   : ... York HTTP instance ....
+%
+%       #1: The URL suffix;
+%       #2: The display name.
+%
+\newcommand{\githublink}[2]{\href{https://github.com/oliverdixon/#1}{#2}}
+\newcommand{\gistlink}[2]{\href{https://gist.github.com/oliverdixon/#1}{#2}}
+\newcommand{\weblink}[2]{\href{https://www-users.york.ac.uk/~od641/#1}{#2}}
 
 % \midtilde: display a vertically centered text-mode tilde
 \newcommand{\midtilde}{\raisebox{.5ex}{\texttildelow}}
@@ -122,7 +142,7 @@
         Mathematics \& Computer Science Student \hfill \hspace{5pt}
         \sociallink{email}{od641@york.ac.uk}{mailto:od641@york.ac.uk}
 \end{center}
-\textline
+\textline%
 %
 % MAJOR SECTION: SUMMARY
 %
@@ -142,7 +162,6 @@ TODO
                 \textit{In progress, with an expected graduation date of
                 September 2027.}
 
-                % TODO: Add module grades before submitting to FastTrack.
                 \item Individual module marks are to be confirmed.
         \end{itemize}
         \item \textbf{2018--2020, Wakefield College (A-Levels)}
@@ -160,15 +179,91 @@ TODO
 \end{itemize}
 
 %
-% MAJOR SECTION: TECHNICAL SKILLS
+% MAJOR SECTION: EXPERIENCE, TECHNICAL SKILLS, AND RELATED ACTIVITIES
 %
-\section{Technical Skills}
+\section{Experience, Technical Skills, and Related Activities}
 Whilst I am constantly concerned with the continual development of my commercial
 and managerial aptitude, a wide variety of experiences have allowed me to
 ascertain a significant set of skills bound to be invaluable to any employer:
+\begin{itemize}
+        \item Expertise---substantiated by over a decade's experience---in the
+        \textit{C} programming language. Some expositions of relevant work
+        can be found on GitHub and my University website:
+        \begin{itemize}
+                \item \weblink{pss}{Programming Support Sessions}: During my
+                tenure as the Technical Officer of The University of York
+                Electronics Society (\textit{ShockSoc}) in the Autumn and Spring
+                terms of 2022, I compiled and delivered a full course of the
+                \textit{C} programming language to cohorts of undergraduate
+                students studying Electronic Engineering.
 
-TODO
+                \item \githublink{calculator-demo}{An Infix Arithmetic
+                Expression Evaluator}: This project includes a reference
+                implementation of the Shunting Yard algorithm, stack-based
+                evaluation, and various other commonly techniques including
+                memory management and the implementation of abstract data types.
+                Implementations in \textit{C} and \textit{Java} are included.
 
+                \item \weblink{fractal}{A Hardware-Accelerated Generalised
+                Fractal Renderer}: This product, coupled with a large report,
+                was written for an A-Level Computer Science qualification,
+                however continues to be maintained in a limited capacity. Using
+                C, OpenGL, and assembly language on a 64-bit Linux platform, the
+                final product was capable of rendering highly customisable
+                self-similar two-dimensional fractals to an \textit{X11} window
+                using distributed computing paradigms.
+
+                \item \gistlink{}{GitHub Gists Library}: A collection of modular
+                and extensible implementations of canonical algorithms and
+                abstract data structures which pervade classical Computer
+                Science and Software Engineering.  Selected contributions
+                include a
+                \gistlink{4cb5cf0f918957ca0cd35306635772cc}{high-performance
+                \texttt{popcount} (zero-counting) benchmarking toolkit}, and
+                \gistlink{b0c4984b7004518309bb67d6c5f6ae7d\#file-sztoa-c}{an
+                optimised implementation of a string-formatter}, emulating the
+                behaviour of a complex and heavyweight \texttt{printf} standard
+                library feature.
+        \end{itemize}
+        \item A matured acquaintance with the \TeX\ and \LaTeX\ typesetting
+        systems. In addition to the \weblink{pss}{aforementioned Programming
+        Support Session scripts}, which were wholly set with \LaTeX, I have an
+        array of similarly technical document-preparation projects:
+        \begin{itemize}
+                \item \githublink{MS1GP}{\textit{Mathematical Skills} Group
+                Project}: A small set of documents covering Category Theory,
+                with a particular focus on its parallels to functional
+                programming and The $\lambda$-Calculus. The repository
+                principally includes a
+                \githublink{MS1GP/blob/master/report/report.tex}{report} and
+                large
+                \githublink{MS1GP/blob/master/presentation/presentation.tex}%
+                        {\textit{Beamer} presentation}. Throughout both mediums,
+                abstract concepts are substantiated with concrete examples in
+                the purely functional \textit{Haskell} programming language, in
+                which I am also fluent. A collection of \textit{Bash} shell
+                scripts was also developed to facilitate effective management
+                and deployment of this project.
+
+                \item \githublink{cv}{Curriculum Vitae}: The sources of my CV
+                demonstrate understanding of imperative and declarative design
+                principles for non-trivial typesetting tasks.
+
+                \item \githublink{opium}{A Humanities and Social Sciences
+                Essay}: Having conceptualised and developed a large essay for an
+                A-Level \textit{AQA History} qualification, I also possess
+                reasonable experience with typesetting large amounts of
+                non-technical prose for professional delivery; this includes the
+                setting of non-Latin scripts including Standard Chinese and
+                Cyrillic.
+        \end{itemize}
+        \item A familiarity with the \textit{Wolfram Mathematica} technical
+        computing system, particularly in the research areas of Automated
+        Theorem-Proving and Distributed Workflows. A small cache of
+        \textit{Mathematica} notebooks, published to demonstrate moderate
+        competence in the~\textit{Wolfram Language}, can be found on
+        \weblink{misc\_mma}{my University web instance}.
+\end{itemize}
 %
 % MAJOR SECTION: REFERENCES
 %
