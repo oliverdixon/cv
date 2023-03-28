@@ -1,9 +1,10 @@
 % Oliver Dixon's Curriculum Vitae (Public Copy)
 % OWD, 2023
 
-% TODO: Add module grades before submitting to FastTrack.
-% TODO: My home address will probably have changed by the time I start applying.
-% TODO: Add a second referee.
+% TODO: Add module grades before submitting to FastTrack;
+% TODO: My home address will probably have changed by the time I start applying;
+% TODO: Add a second referee;
+% TODO: Remove draft watermark.
 
 % \loop\iftrue
 %         \errmessage{Are you sure that you want to TeX my CV? :)}%
@@ -15,12 +16,25 @@
 \usepackage[a4paper]{geometry} % Use correct margin sizes for A4 paper
 \usepackage{setspace} % Custom line spacing
 \usepackage[en-GB]{datetime2} % Regional formatting of \today
-\usepackage{graphicx} % Graphics support for the social icons
+\usepackage{graphicx, xcolor} % Graphics support for the social icons
 \usepackage{fancyhdr, lastpage} % Header and footer formatting
+\usepackage{lmodern} % Correct font-sizing
+
+\usepackage[
+        angle = 90,
+        anchor = lm,
+        hpos = 4em,
+        fontsize = .05\paperwidth%
+]{draftwatermark}
+
 \usepackage[
         colorlinks = true,
         allcolors  = blue
 ]{hyperref}
+
+% Wait until hyperref has loaded before setting the colour. We also cannot use
+% \textbf on the RHS of a key-value specification, so we set the text here.
+\DraftwatermarkOptions{text=\textbf{Draft CV}, color=red!40}
 
 \setstretch{1.1} % Marginally greater line spacing improves readability
 \addtolength{\textheight}{4em} % Increase the writable vertical area
@@ -33,7 +47,7 @@
 
 \newlength{\socialsep}
 \setlength{\socialsep}{.3\baselineskip}
-\newcommand{\todomark}{\color{red}{\textbf{[TODO]}}}
+\newcommand{\todomark}[1]{{\color{red}\textbf{[TODO: #1]}}}
 
 % Included social icons may have a page group defined; these will not clash with
 % the master document page groups, so it is safe to suppress this warning.
@@ -54,7 +68,10 @@
         \fancyhead[L]{\@title}
         \fancyhead[R]{\yorkemail{\@author}{od641}}
         \fancyfoot[L]{\today}
-        \fancyfoot[R]{Page \thepage{} of~\pageref{LastPage}}
+        \fancyfoot[R]{%
+                \hypersetup{linkcolor=black}%
+                Page \thepage\ of~\pageref{LastPage}%
+        }
 }
 \makeatother
 
@@ -149,12 +166,12 @@
 % MAJOR SECTION: SUMMARY
 %
 \section{Summary}
-I am a first-year Mathematics and Computer Science joint honours undergraduate
-student at The University of York, currently averaging over 90\% in academic
-disciplines. In addition to having a keen interest in Pure Mathematics and
-Theoretical Computer Science, I am well-versed in a diverse range of practical
-technologies including C, Java, Haskell, \LaTeX{}, Wolfram \textit{Mathematica},
-and various scripting languages.
+I am a Mathematics and Computer Science joint honours undergraduate student at
+The University of York, currently averaging over 90\% in academic disciplines.
+In addition to having a keen and long-established interest in Pure Mathematics
+and Theoretical Computer Science, I am well-versed in a diverse range of
+practical technologies including C, Java, Haskell, \LaTeX{}, Wolfram
+\textit{Mathematica}, and a variety of scripting languages.
 
 %
 % MAJOR SECTION: EDUCATION
@@ -169,7 +186,8 @@ and various scripting languages.
                 \textit{In progress, with an expected graduation date of
                 September 2027.}
 
-                \item Individual module marks are to be confirmed. \todomark%
+                \item Individual module marks are yet to be confirmed.
+                \todomark{Grades}%
         \end{itemize}
         \item \textbf{2018--2020, Wakefield College (A-Levels)}
         \begin{itemize}
@@ -244,6 +262,8 @@ ascertain a significant set of skills bound to be invaluable to any employer:
                 Haskell programming language, in which I am also fluent. A
                 collection of Bash shell scripts was also developed to
                 facilitate effective management and deployment of this project.
+                \todomark{This repository will be publicised once the MS1 marks
+                have been ratified by the Board of Examiners.}
 
                 \item \githublink{cv}{Curriculum Vitae}: The sources of my CV
                 demonstrate understanding of imperative and declarative design
@@ -272,7 +292,7 @@ The following academics are available to act as referees:
 \begin{itemize}
         \item \yorkemail{Dr.\ Chris Wood (Academic Supervisor)}{chris.wood}
         \item \yorkemail{Dr.\ Chris Wood (Academic Supervisor)}{chris.wood}
-        \todomark%
+        \todomark{Referee}%
 \end{itemize}
 %
 \end{document}
