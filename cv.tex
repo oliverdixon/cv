@@ -3,7 +3,7 @@
 
 % TODO: Add module grades before submitting to FastTrack.
 % TODO: My home address will probably have changed by the time I start applying.
-% TODO: Write the summary
+% TODO: Add a second referee.
 
 % \loop\iftrue
 %         \errmessage{Are you sure that you want to TeX my CV? :)}%
@@ -23,6 +23,7 @@
 ]{hyperref}
 
 \setstretch{1.1} % Marginally greater line spacing improves readability
+\addtolength{\textheight}{4em} % Increase the writable vertical area
 
 % Do not indent new paragraphs. This is usually poor style, but since we are
 % preferring lists (which have their own vertical spacing) over paragraphs for
@@ -32,6 +33,7 @@
 
 \newlength{\socialsep}
 \setlength{\socialsep}{.3\baselineskip}
+\newcommand{\todomark}{\color{red}{\textbf{[TODO]}}}
 
 % Included social icons may have a page group defined; these will not clash with
 % the master document page groups, so it is safe to suppress this warning.
@@ -147,7 +149,12 @@
 % MAJOR SECTION: SUMMARY
 %
 \section{Summary}
-TODO
+I am a first-year Mathematics and Computer Science joint honours undergraduate
+student at The University of York, currently averaging over 90\% in academic
+disciplines. In addition to having a keen interest in Pure Mathematics and
+Theoretical Computer Science, I am well-versed in a diverse range of practical
+technologies including C, Java, Haskell, \LaTeX{}, Wolfram \textit{Mathematica},
+and various scripting languages.
 
 %
 % MAJOR SECTION: EDUCATION
@@ -162,7 +169,7 @@ TODO
                 \textit{In progress, with an expected graduation date of
                 September 2027.}
 
-                \item Individual module marks are to be confirmed.
+                \item Individual module marks are to be confirmed. \todomark%
         \end{itemize}
         \item \textbf{2018--2020, Wakefield College (A-Levels)}
         \begin{itemize}
@@ -258,10 +265,15 @@ ascertain a significant set of skills bound to be invaluable to any employer:
         \weblink{misc\_mma}{my University web instance}.
 \end{itemize}
 %
-% MAJOR SECTION: REFERENCES
+% MAJOR SECTION: REFEREES
 %
-\section{References}
-References are available on request.
+\section{Referees}
+The following academics are available to act as referees:
+\begin{itemize}
+        \item \yorkemail{Dr.\ Chris Wood (Academic Supervisor)}{chris.wood}
+        \item \yorkemail{Dr.\ Chris Wood (Academic Supervisor)}{chris.wood}
+        \todomark%
+\end{itemize}
 %
 \end{document}
 
