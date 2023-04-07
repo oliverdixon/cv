@@ -3,8 +3,10 @@
 
 % TODO: Add module grades before submitting to FastTrack;
 % TODO: My home address will probably have changed by the time I start applying;
-% TODO: Add a second referee;
-% TODO: Remove draft watermark.
+% TODO: Remove draft watermark (draftwatermark, lmodern, xcolor).
+% TODO: Add examples of "soft-skills". (This will be most germane to the PSS
+%       section: the composition and delivery of such a course required [some
+%       positive trait].)
 
 % \loop\iftrue
 %         \errmessage{Are you sure that you want to TeX my CV? :)}%
@@ -24,6 +26,7 @@
         angle = 90,
         anchor = lm,
         hpos = 4em,
+        color = red!40,
         fontsize = .05\paperwidth%
 ]{draftwatermark}
 
@@ -32,9 +35,8 @@
         allcolors  = blue
 ]{hyperref}
 
-% Wait until hyperref has loaded before setting the colour. We also cannot use
-% \textbf on the RHS of a key-value specification, so we set the text here.
-\DraftwatermarkOptions{text=\textbf{Draft CV}, color=red!40}
+% We cannot use \textbf in a key-value specification, so we set the text here.
+\DraftwatermarkOptions{text=\textbf{Draft CV}}
 
 \setstretch{1.1} % Marginally greater line spacing improves readability
 \addtolength{\textheight}{4em} % Increase the writable vertical area
@@ -47,7 +49,7 @@
 
 \newlength{\socialsep}
 \setlength{\socialsep}{.3\baselineskip}
-\newcommand{\todomark}[1]{{\color{red}\textbf{[TODO: #1]}}}
+\newcommand{\todomark}[1]{{\color{red}\textbf{[TODO:\@ #1]}}}
 
 % Included social icons may have a page group defined; these will not clash with
 % the master document page groups, so it is safe to suppress this warning.
@@ -140,6 +142,10 @@
 %
 % MAJOR SECTION: TITLE AND METADATA HEADER
 %
+\phantomsection%
+\makeatletter
+\addcontentsline{toc}{chapter}{\@author: \@title}%
+\makeatother
 \begin{center}
         \Large
         \makeatletter
@@ -165,7 +171,9 @@
 %
 % MAJOR SECTION: SUMMARY
 %
-\section{Summary}
+\phantomsection%
+\addcontentsline{toc}{section}{Summary}%
+\vspace{2em}
 I am a Mathematics and Computer Science joint honours undergraduate student at
 The University of York, currently averaging over 90\% in academic disciplines.
 In addition to having a keen and long-established interest in Pure Mathematics
@@ -179,6 +187,7 @@ practical technologies including C, Java, Haskell, \LaTeX{}, Wolfram
 \section{Education}
 \begin{itemize}
         \item \textbf{2022--Present, University of York (MMath)}
+        \todomark{Grades}
         \begin{itemize}
                 \item MMath Mathematics and Computer Science, with a Year in
                 Industry.
@@ -186,8 +195,11 @@ practical technologies including C, Java, Haskell, \LaTeX{}, Wolfram
                 \textit{In progress, with an expected graduation date of
                 September 2027.}
 
-                \item Individual module marks are yet to be confirmed.
-                \todomark{Grades}%
+                \item Mathematics: Algebra: 0\%; Calculus: 0\%; Mathematical
+                Skills: 0\%.
+
+                \item Computer Science: Software Part 1: 95\%; Software Part 2:
+                0\%; Theory: 0\%.
         \end{itemize}
         \item \textbf{2018--2020, Wakefield College (A-Levels)}
         \begin{itemize}
@@ -229,23 +241,24 @@ ascertain a significant set of skills bound to be invaluable to any employer:
                 memory management and the implementation of abstract data types.
                 Implementations in C and Java are included.
 
-                \item \weblink{fractal}{A Hardware-Accelerated Generalised
-                Fractal Renderer}: This product, coupled with a large report,
-                was written for an A-Level Computer Science qualification,
-                however continues to be maintained in a limited capacity. Using
-                C, OpenGL, and assembly language on a 64-bit Linux platform, the
-                final product was capable of rendering highly customisable
+                \item \weblink{fractal}{A Hardware-Accelerated Fractal
+                Renderer}: This product, coupled with a large report, was
+                written for an A-Level Computer Science qualification, however
+                continues to be maintained in a limited capacity. Using C,
+                OpenGL, and assembly language on a 64-bit Linux platform, the
+                final product was capable of rendering parametrisable
                 self-similar two-dimensional fractals to an X11 window using
                 distributed computing paradigms.
 
                 \item \gistlink{}{GitHub Gists Library}: A collection of modular
                 and extensible implementations of canonical algorithms and
                 abstract data structures which pervade classical Computer
-                Science and Software Engineering. Selected contributions
-                include a high-performance \texttt{popcount} (zero-counting)
-                benchmarking toolkit, and an optimised implementation of a
-                string-formatter, emulating the behaviour of a complex and
-                heavyweight \texttt{printf} standard library feature.
+                Science and Software Engineering. Selected contributions include
+                a Hamming Weight benchmarking toolkit, an optimised
+                implementation of a string-formatter, and a visual demonstration
+                of dynamic allocation, intended for the education of
+                undergraduate Computer Science and Electronic Engineering
+                students.
         \end{itemize}
         \item A matured acquaintance with the \TeX\ and \LaTeX\ typesetting
         systems. In addition to the aforementioned Programming Support Session
@@ -285,15 +298,10 @@ ascertain a significant set of skills bound to be invaluable to any employer:
         \weblink{misc\_mma}{my University web instance}.
 \end{itemize}
 %
-% MAJOR SECTION: REFEREES
+% MAJOR SECTION: References
 %
-\section{Referees}
-The following academics are available to act as referees:
-\begin{itemize}
-        \item \yorkemail{Dr.\ Chris Wood (Academic Supervisor)}{chris.wood}
-        \item \yorkemail{Dr.\ Chris Wood (Academic Supervisor)}{chris.wood}
-        \todomark{Referee}%
-\end{itemize}
+\section{References}
+References are available upon request.
 %
 \end{document}
 
