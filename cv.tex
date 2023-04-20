@@ -4,14 +4,11 @@
 % TODO: Add module grades before submitting to FastTrack;
 % TODO: My home address will probably have changed by the time I start applying;
 % TODO: Remove draft watermark (draftwatermark, lmodern, xcolor).
-% TODO: Add examples of "soft-skills". (This will be most germane to the PSS
-%       section: the composition and delivery of such a course required [some
-%       positive trait].)
 
-% \loop\iftrue
-%         \errmessage{Are you sure that you want to TeX my CV? :)}%
-%         \repeat
-% \pausing1
+\loop\iftrue
+        \errmessage{Are you sure that you want to TeX my CV? :)}%
+        \repeat
+\pausing1
 
 \documentclass{article}
 
@@ -36,10 +33,12 @@
 ]{hyperref}
 
 % We cannot use \textbf in a key-value specification, so we set the text here.
-\DraftwatermarkOptions{text=\textbf{Draft CV}}
+\DraftwatermarkOptions{text=\textbf{Draft CV rev. 2}}
 
 \setstretch{1.1} % Marginally greater line spacing improves readability
 \addtolength{\textheight}{4em} % Increase the writable vertical area
+
+\newcommand{\smallmargin}[1]{\marginpar{\raggedright\footnotesize #1}}
 
 % Do not indent new paragraphs. This is usually poor style, but since we are
 % preferring lists (which have their own vertical spacing) over paragraphs for
@@ -67,9 +66,6 @@
 \fancypagestyle{body}{%
 	\fancyhf{}
         \renewcommand{\headrulewidth}{\footrulewidth}
-        \fancyhead[L]{\@title}
-        \fancyhead[R]{\yorkemail{\@author}{od641}}
-        \fancyfoot[L]{\today}
         \fancyfoot[R]{%
                 \hypersetup{linkcolor=black}%
                 Page \thepage\ of~\pageref{LastPage}%
@@ -175,11 +171,13 @@
 \addcontentsline{toc}{section}{Summary}%
 \vspace{2em}
 I am a Mathematics and Computer Science joint honours undergraduate student at
-The University of York, currently averaging over 90\% in academic disciplines.
-In addition to having a keen and long-established interest in Pure Mathematics
-and Theoretical Computer Science, I am well-versed in a diverse range of
-practical technologies including C, Java, Haskell, \LaTeX{}, Wolfram
-\textit{Mathematica}, and a variety of scripting languages.
+The University of York, currently seeking a Year in Industry while averaging
+over 90\% in academic disciplines.  In addition to having a keen and
+long-established interest in Pure Mathematics and Theoretical Computer Science,
+I am well-versed in a diverse range of practical technologies including C, Java,
+Haskell, \LaTeX{}, \textit{Mathematica}, and a variety of scripting languages.
+These act in complement to my demonstrable abilities in strong leadership,
+communication, and organisation.
 
 %
 % MAJOR SECTION: EDUCATION
@@ -188,6 +186,8 @@ practical technologies including C, Java, Haskell, \LaTeX{}, Wolfram
 \begin{itemize}
         \item \textbf{2022--Present, University of York (MMath)}
         \todomark{Grades}
+        \smallmargin{\color{red}{Drafting note: I have added module titles as
+        requested, but I do not yet know my marks in most cases.}}
         \begin{itemize}
                 \item MMath Mathematics and Computer Science, with a Year in
                 Industry.
@@ -234,15 +234,27 @@ ascertain a significant set of skills bound to be invaluable to any employer:
                 programming language to cohorts of undergraduate students
                 studying Electronic Engineering.
 
-                \item \githublink{calculator-demo}{An Infix Arithmetic
-                Expression Evaluator}: This project includes a reference
-                implementation of the Shunting Yard algorithm, stack-based
-                evaluation, and various other commonly techniques including
-                memory management and the implementation of abstract data types.
-                Implementations in C and Java are included.
+                Throughout the orchestration of this project, in the interests
+                of securing a successful execution, I demonstrated impeccable
+                long-term organisational and leadership skills: this included
+                administration of the Societal and Departmental assets, and
+                management of all interested parties.
 
-                \item \weblink{fractal}{A Hardware-Accelerated Fractal
-                Renderer}: This product, coupled with a large report, was
+                \item \githublink{calculator-demo}{An Arithmetic Expression
+                Evaluator}: This project includes a reference implementation of
+                the Shunting Yard algorithm, stack-based evaluation, and various
+                other commonly techniques including memory management and the
+                implementation of abstract data types.  Implementations in C and
+                Java are included. This project is under active development,
+                with the eventual goal of producing a more generalised computer
+                algebra system.
+
+                \item \smallmargin{\color{red}{Drafting note: As requested, I
+                have omitted some superfluous detail from these project
+                descriptions. Some soft-skills are also mentioned here and in
+                the ``Summary'' section.}}%
+                \weblink{fractal}{A Hardware-Accelerated Fractal Renderer}:
+                This product, coupled with a large report, was
                 written for an A-Level Computer Science qualification, however
                 continues to be maintained in a limited capacity. Using C,
                 OpenGL, and assembly language on a 64-bit Linux platform, the
@@ -269,10 +281,9 @@ ascertain a significant set of skills bound to be invaluable to any employer:
                 Project}: A small set of documents covering Category Theory,
                 with a particular focus on its parallels to functional
                 programming and The $\lambda$-Calculus. The repository
-                principally includes a report and large \textit{Beamer}
-                presentation. Throughout both mediums, abstract concepts are
-                substantiated with concrete examples in the purely functional
-                Haskell programming language, in which I am also fluent. A
+                includes a report and large \textit{Beamer} presentation,
+                throughout which abstract concepts are substantiated with
+                concrete examples in the Haskell programming language. A
                 collection of Bash shell scripts was also developed to
                 facilitate effective management and deployment of this project.
                 \todomark{This repository will be publicised once the MS1 marks
@@ -281,20 +292,11 @@ ascertain a significant set of skills bound to be invaluable to any employer:
                 \item \githublink{cv}{Curriculum Vitae}: The sources of my CV
                 demonstrate understanding of imperative and declarative design
                 principles for non-trivial typesetting tasks.
-
-                \item \githublink{opium}{A Humanities and Social Sciences
-                Essay}: Having conceptualised and developed a large essay for an
-                A-Level \textit{AQA History} qualification, I also possess
-                reasonable experience with typesetting large amounts of
-                non-technical prose for professional delivery; this includes the
-                setting of non-Latin scripts including Standard Chinese and
-                Cyrillic.
         \end{itemize}
         \item A familiarity with the Wolfram \textit{Mathematica} technical
         computing system, particularly in the research areas of Automated
         Theorem-Proving and Distributed Workflows. A small cache of
-        \textit{Mathematica} notebooks, published to demonstrate moderate
-        competence in the Wolfram Language, can be found on
+        \textit{Mathematica} notebooks can be found on
         \weblink{misc\_mma}{my University web instance}.
 \end{itemize}
 %
