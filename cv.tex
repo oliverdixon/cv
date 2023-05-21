@@ -3,14 +3,13 @@
 
 % TODO: Add module grades before submitting to FastTrack;
 % TODO: My home address will probably have changed by the time I start applying;
-% TODO: Remove draft watermark (draftwatermark, lmodern, xcolor).
 
 \loop\iftrue
         \errmessage{Are you sure that you want to TeX my CV? :)}%
         \repeat
 \pausing1
 
-\documentclass{article}
+\documentclass[final]{article}
 
 \usepackage[a4paper]{geometry} % Use correct margin sizes for A4 paper
 \usepackage{setspace} % Custom line spacing
@@ -33,12 +32,13 @@
 ]{hyperref}
 
 % We cannot use \textbf in a key-value specification, so we set the text here.
-\DraftwatermarkOptions{text=\textbf{Draft CV rev. 2}}
+\DraftwatermarkOptions{text=\textbf{Draft CV}}
+
+% \newcommand{\smallmargin}[1]{\marginpar{\raggedright\footnotesize #1}}
+% \newcommand{\todomark}[1]{{\color{red}\textbf{[TODO:\@ #1]}}}
 
 \setstretch{1.1} % Marginally greater line spacing improves readability
 \addtolength{\textheight}{4em} % Increase the writable vertical area
-
-\newcommand{\smallmargin}[1]{\marginpar{\raggedright\footnotesize #1}}
 
 % Do not indent new paragraphs. This is usually poor style, but since we are
 % preferring lists (which have their own vertical spacing) over paragraphs for
@@ -48,7 +48,6 @@
 
 \newlength{\socialsep}
 \setlength{\socialsep}{.3\baselineskip}
-\newcommand{\todomark}[1]{{\color{red}\textbf{[TODO:\@ #1]}}}
 
 % Included social icons may have a page group defined; these will not clash with
 % the master document page groups, so it is safe to suppress this warning.
@@ -185,9 +184,6 @@ communication, and organisation.
 \section{Education}
 \begin{itemize}
         \item \textbf{2022--Present, University of York (MMath)}
-        \todomark{Grades}
-        \smallmargin{\color{red}{Drafting note: I have added module titles as
-        requested, but I do not yet know my marks in most cases.}}
         \begin{itemize}
                 \item MMath Mathematics and Computer Science, with a Year in
                 Industry.
@@ -195,11 +191,11 @@ communication, and organisation.
                 \textit{In progress, with an expected graduation date of
                 September 2027.}
 
-                \item Mathematics: Algebra: 0\%; Calculus: 0\%; Mathematical
-                Skills: 0\%.
+                \item Mathematics: Algebra: ---\%; Calculus: ---\%; Mathematical
+                Skills: ---\%.
 
                 \item Computer Science: Software Part 1: 95\%; Software Part 2:
-                0\%; Theory: 0\%.
+                ---\%; Theory: ---\%.
         \end{itemize}
         \item \textbf{2018--2020, Wakefield College (A-Levels)}
         \begin{itemize}
@@ -249,12 +245,8 @@ ascertain a significant set of skills bound to be invaluable to any employer:
                 with the eventual goal of producing a more generalised computer
                 algebra system.
 
-                \item \smallmargin{\color{red}{Drafting note: As requested, I
-                have omitted some superfluous detail from these project
-                descriptions. Some soft-skills are also mentioned here and in
-                the ``Summary'' section.}}%
-                \weblink{fractal}{A Hardware-Accelerated Fractal Renderer}:
-                This product, coupled with a large report, was
+                \item \weblink{fractal}{A Hardware-Accelerated Fractal
+                Renderer}: This product, coupled with a large report, was
                 written for an A-Level Computer Science qualification, however
                 continues to be maintained in a limited capacity. Using C,
                 OpenGL, and assembly language on a 64-bit Linux platform, the
@@ -286,8 +278,6 @@ ascertain a significant set of skills bound to be invaluable to any employer:
                 concrete examples in the Haskell programming language. A
                 collection of Bash shell scripts was also developed to
                 facilitate effective management and deployment of this project.
-                \todomark{This repository will be publicised once the MS1 marks
-                have been ratified by the Board of Examiners.}
 
                 \item \githublink{cv}{Curriculum Vitae}: The sources of my CV
                 demonstrate understanding of imperative and declarative design
