@@ -1,299 +1,216 @@
 % Oliver Dixon's Curriculum Vitae (Public Copy)
 % OWD, 2023
 
-% TODO: Add module grades before submitting to FastTrack;
-% TODO: My home address will probably have changed by the time I start applying;
-
-\loop\iftrue
-        \errmessage{Are you sure that you want to TeX my CV? :)}%
-        \repeat
-\pausing1
+% \loop\iftrue
+%   \errmessage{Are you sure that you want to TeX my CV? :)}%
+%   \repeat
+% \pausing1
 
 \documentclass[final]{article}
 
-\usepackage[a4paper]{geometry} % Use correct margin sizes for A4 paper
-\usepackage{setspace} % Custom line spacing
-\usepackage[en-GB]{datetime2} % Regional formatting of \today
-\usepackage{graphicx, xcolor} % Graphics support for the social icons
-\usepackage{fancyhdr, lastpage} % Header and footer formatting
-\usepackage{lmodern} % Correct font-sizing
-
-\usepackage[
-        angle = 90,
-        anchor = lm,
-        hpos = 4em,
-        color = red!40,
-        fontsize = .05\paperwidth%
-]{draftwatermark}
-
-\usepackage[
-        colorlinks = true,
-        allcolors  = blue
-]{hyperref}
-
-% We cannot use \textbf in a key-value specification, so we set the text here.
-\DraftwatermarkOptions{text=\textbf{Draft CV}}
-
-% \newcommand{\smallmargin}[1]{\marginpar{\raggedright\footnotesize #1}}
-% \newcommand{\todomark}[1]{{\color{red}\textbf{[TODO:\@ #1]}}}
-
-\setstretch{1.1} % Marginally greater line spacing improves readability
-\addtolength{\textheight}{4em} % Increase the writable vertical area
-
-% Do not indent new paragraphs. This is usually poor style, but since we are
-% preferring lists (which have their own vertical spacing) over paragraphs for
-% separation of prose, a non-zero \parindent would require excessive \noindent
-% invocations.
-\setlength{\parindent}{0pt}
-
-\newlength{\socialsep}
-\setlength{\socialsep}{.3\baselineskip}
+\usepackage[a4paper, margin=30mm]{geometry}
+\usepackage[en-GB]{datetime2}
+\usepackage{graphicx, xcolor, titlesec, tabularx}
+\usepackage[colorlinks = true, allcolors = blue]{hyperref}
 
 % Included social icons may have a page group defined; these will not clash with
 % the master document page groups, so it is safe to suppress this warning.
 \pdfsuppresswarningpagegroup=1
 
-% Remove number printing; preserve the hyperref index and TOC
-\renewcommand{\thesection}{\hspace{-1em}}
+\renewcommand\baselinestretch{1.1}
+\setlength\parindent{0pt}
 
-% Make bullet points slightly smaller
-\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-% The 'body' style decorates all pages past the first page.
-\renewcommand{\footrulewidth}{.4pt}
-\makeatletter
-\fancypagestyle{body}{%
-	\fancyhf{}
-        \renewcommand{\headrulewidth}{\footrulewidth}
-        \fancyfoot[R]{%
-                \hypersetup{linkcolor=black}%
-                Page \thepage\ of~\pageref{LastPage}%
-        }
-}
-\makeatother
-
-% The 'title' style decorates only the title page; only the header is omitted.
-\fancypagestyle{title}{%
-        \fancyhead{}
-        \renewcommand{\headrulewidth}{0pt}
-}
+\titleformat{\section}{\centering\Large\scshape}{}{0pt}{}
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
 \title{Curriculum Vitae}
 \author{Oliver Dixon}
 
-% \sociallink: include a social link with a small icon
-%
-%       #1: The platform identifier, used for resolving the icon file path;
-%       #2: The display text for the hyperlink;
-%       #3: The hyperlink destination.
-%
-\newcommand{\sociallink}[3]{%
-        \raggedleft%
-        {%
-                \large
-                \href{#3}{#2}%
-                \hspace{.8em}%
-                \begingroup
-                \setbox0=\hbox{\includegraphics[width=.8em]{icons/#1}}%
-                \parbox{\wd0}{\box0}
-                \endgroup
-        }%
-        \par
-}
-
 % \yorkemail: expand to a clickable mailto URL of a York e-mail address
 %
-%       #1: The display name;
-%       #2: The York username.
+%   #1: The display name;
+%   #2: The York username.
 %
 \newcommand{\yorkemail}[2]{%
-        #1
-        \textless%
-        \href{mailto:#2@york.ac.uk}{\texttt{#2@york.ac.uk}}%
-        \textgreater%
+  #1
+  \textless%
+  \href{mailto:#2@york.ac.uk}{\texttt{#2@york.ac.uk}}%
+  \textgreater%
 }
 
 % \githublink: expand to a clickable link to the ... GitHub ...\ site
 % \gistlink  : ... GitHub Gist ...
 % \weblink   : ... York HTTP instance ....
 %
-%       #1: The URL suffix;
-%       #2: The display name.
+%   #1: The URL suffix;
+%   #2: The display name.
 %
-\newcommand{\githublink}[2]{\href{https://github.com/oliverdixon/#1}{#2}}
-\newcommand{\gistlink}[2]{\href{https://gist.github.com/oliverdixon/#1}{#2}}
-\newcommand{\weblink}[2]{\href{https://www-users.york.ac.uk/~od641/#1}{#2}}
+\newcommand\githublink[2]{\href{https://github.com/oliverdixon/#1}{#2}}
+\newcommand\gistlink[2]{\href{https://gist.github.com/oliverdixon/#1}{#2}}
+\newcommand\weblink[2]{\href{https://www-users.york.ac.uk/~od641/#1}{#2}}
 
-% \midtilde: display a vertically centered text-mode tilde
-\newcommand{\midtilde}{\raisebox{.5ex}{\texttildelow}}
+% \midtilde: draw a vertically centered text-mode tilde
+\newcommand\midtilde{\raisebox{.5ex}{\texttildelow}}
 
 % \textline: draw a black horizontal rule across the writeable page width
-\newcommand{\textline}{\par\rule{\textwidth}{\footrulewidth}}
+\newcommand\textline{\par\rule{\textwidth}{.4pt}}
+
+% \socialicon: prints a small social media icon
+%
+%   #1: the icon file;
+%   #2: the amount by which the icon should be raised.
+%
+\newcommand\socialicon[2]
+  {\raisebox{-#2}{\includegraphics[width=.8em]{icons/#1}}}
 
 \begin{document}
-%
-\thispagestyle{title}
-\pagestyle{body}
-%
-% MAJOR SECTION: TITLE AND METADATA HEADER
-%
 \phantomsection%
 \makeatletter
 \addcontentsline{toc}{chapter}{\@author: \@title}%
 \makeatother
 \begin{center}
-        \Large
-        \makeatletter
-        \textbf{\@author} \hfill%
-        \sociallink{github}{github.com/oliverdixon}%
-                {https://github.com/oliverdixon}
-        \makeatother
-        \large
-
-        \vspace{\socialsep} \hfill%
-        \sociallink{internet}{www-users.york.ac.uk/\midtilde{}od641}%
-                {https://www-users.york.ac.uk/~od641}
-
-        \vspace{\socialsep}
-        7 Monkton Road, York, YO31 9AJ \hfill%
-        \sociallink{telephone}{+44 (0) 7341416944}{tel:+447341416944}
-
-        \vspace{\socialsep}
-        Mathematics \& Computer Science Student \hfill%
-        \sociallink{email}{od641@york.ac.uk}{mailto:od641@york.ac.uk}
+  \begingroup
+  \sffamily\large
+  \makeatletter
+  \setlength\tabcolsep{0pt}
+  \renewcommand\arraystretch{1.3}
+  \begin{tabularx}{\textwidth}{Xr@{\hspace{10pt}}c}
+    \Large\textbf{\@author} &
+      \href{https://github.com/oliverdixon}{github.com/oliverdixon} &
+      \socialicon{github}{1pt} \\ &
+    \href{https://www-users.york.ac.uk/~od641}
+      {www-users.york.ac.uk/\midtilde{}od641} &
+      \socialicon{internet}{1pt} \\
+    7 Earle Street, York, YO31 7ES &
+      \href{tel:+447341416944}{+44 (0) 7341416944} &
+      \socialicon{telephone}{1.5pt} \\
+    Mathematics \& Computer Science Student &
+      \href{mailto:od641@york.ac.uk}{od641@york.ac.uk} &
+      \socialicon{email}{-.5pt}
+  \end{tabularx}
+  \makeatother
+  \endgroup
 \end{center}
 \textline%
-%
-% MAJOR SECTION: SUMMARY
-%
 \phantomsection%
 \addcontentsline{toc}{section}{Summary}%
 \vspace{2em}
 I am a Mathematics and Computer Science joint honours undergraduate student at
-The University of York, currently seeking a Year in Industry while averaging
-over 90\% in academic disciplines.  In addition to having a keen and
-long-established interest in Pure Mathematics and Theoretical Computer Science,
-I am well-versed in a diverse range of practical technologies including C, Java,
-Haskell, \LaTeX{}, \textit{Mathematica}, and a variety of scripting languages.
-These act in complement to my demonstrable abilities in strong leadership,
-communication, and organisation.
+the University of York, currently seeking a Year in Industry while averaging
+over 80\% in academic disciplines. In addition to having a keen and
+long-established interest in Mathematics and Theoretical Computer Science,
+I am well-versed in a diverse range of practical technologies including C, C++,
+Java, Haskell, \LaTeX{}, SQL, Python, and a variety of other scripting
+languages. These act in complement to my demonstrable abilities in strong
+leadership, communication, and organisation. I am enthusiastic to participate
+in a high-pressure and client-oriented environment, and I anticipate to exploit
+my problem-solving and analytical skills, gained through the study of
+Mathematics and a decade of software-development experience, to devise efficient
+solutions that satisfy clients' criteria.
 
-%
-% MAJOR SECTION: EDUCATION
-%
 \section{Education}
 \begin{itemize}
-        \item \textbf{2022--Present, University of York (MMath)}
-        \begin{itemize}
-                \item MMath Mathematics and Computer Science, with a Year in
-                Industry.
-
-                \textit{In progress, with an expected graduation date of
-                September 2027.}
-
-                \item Mathematics: Algebra: ---\%; Calculus: ---\%; Mathematical
-                Skills: ---\%.
-
-                \item Computer Science: Software Part 1: 95\%; Software Part 2:
-                ---\%; Theory: ---\%.
-        \end{itemize}
-        \item \textbf{2018--2020, Wakefield College (A-Levels)}
-        \begin{itemize}
-                \item A-level Mathematics (\textbf{A})
-                \item A-level Further Mathematics (\textbf{A})
-                \item A-level Computer Science (\textbf{A})
-                \item A-level History (\textbf{A})
-        \end{itemize}
-        \item \textbf{2015--2018, Outwood Grange Academy (GCSEs)}
-        \begin{itemize}
-                \item 10 GCSEs achieved at grades \textbf{A}--\textbf{C},
-                including English and Mathematics.
-        \end{itemize}
+  \item \textbf{2022--Present, University of York (MMath)}
+  \begin{itemize}
+    \item MMath Mathematics and Computer Science, with a Year in
+      Industry.\par\emph{In progress, with an expected graduation date of
+      September 2027. Some first-year grades are currently pending due to the
+      ongoing Marking and Assessment boycott.}
+    \item Computer Science: Software Part 1: 95\%; Theory: 88\%;
+      Software Part 2: 67\%.
+    \item Mathematics: Mathematical Skills: 81\%; Calculus: TBC;
+      Algebra: 67\%.
+  \end{itemize}
+  \item \textbf{2018--2020, Wakefield College (A-Levels)}
+  \begin{itemize}
+    \item A-level Mathematics (\textbf{A})
+    \item A-level Further Mathematics (\textbf{A})
+    \item A-level Computer Science (\textbf{A})
+    \item A-level History (\textbf{A})
+  \end{itemize}
+  \item \textbf{2015--2018, Outwood Grange Academy (GCSEs)}
+  \begin{itemize}
+    \item 10 GCSEs achieved at grades \textbf{A}--\textbf{C}, including English
+    and Mathematics.
+  \end{itemize}
 \end{itemize}
 
-%
-% MAJOR SECTION: EXPERIENCE AND TECHNICAL SKILLS
-%
 \section{Experience and Technical Skills}
 Whilst I am constantly concerned with the continual development of my commercial
-and managerial aptitude, a wide variety of experiences have allowed me to
-ascertain a significant set of skills bound to be invaluable to any employer:
+and managerial aptitude, a wide variety of experiences has allowed me to
+ascertain a significant set of skills bound to be invaluable to any employer.
 \begin{itemize}
-        \item Expertise---substantiated by over a decade's experience---in the C
-        programming language. Some expositions of relevant work can be found on
-        GitHub and my University website:
-        \begin{itemize}
-                \item \weblink{pss}{Programming Support Sessions}: During my
-                tenure as the Technical Officer of The University of York
-                Electronics Society (\textit{ShockSoc}) in the Autumn and Spring
-                terms of 2022, I compiled and delivered a full course of the C
-                programming language to cohorts of undergraduate students
-                studying Electronic Engineering.
+  \item Expertise---substantiated by over a decade's experience---in the C, C++,
+  and Java programming languages, the latter of which have allowed me to form a
+  solid understanding of modern object-oriented design patterns. Some
+  expositions of relevant work can be found on GitHub and my University website;
+  brief descriptions are provided below.
+  \begin{itemize}
+    \item \weblink{pss}{Programming Support Sessions}: During my tenure as the
+    Technical Director of the University of York Electronics Society
+    (\textit{EngSoc}, formerly \textit{ShockSoc}) throughout 2022, I compiled
+    and delivered a full course of the C programming language to large cohorts
+    of undergraduate students studying various branches of Engineering.
 
-                Throughout the orchestration of this project, in the interests
-                of securing a successful execution, I demonstrated impeccable
-                long-term organisational and leadership skills: this included
-                administration of the Societal and Departmental assets, and
-                management of all interested parties.
+    During the orchestration of this project, in the interests of securing a
+    successful execution, I demonstrated impeccable long-term organisational and
+    leadership skills: this included administration of the Societal and
+    Departmental assets, and management of all interested parties.
 
-                \item \githublink{calculator-demo}{An Arithmetic Expression
-                Evaluator}: This project includes a reference implementation of
-                the Shunting Yard algorithm, stack-based evaluation, and various
-                other commonly techniques including memory management and the
-                implementation of abstract data types.  Implementations in C and
-                Java are included. This project is under active development,
-                with the eventual goal of producing a more generalised computer
-                algebra system.
+    \item \githublink{calculator-demo}{A Work-In-Progress Computer Algebra
+    System}: This project unifies efficient and refined implementations of
+    algorithms that are integral mathematical computing applications.  This
+    codebase is under active development, with the eventual goal of producing a
+    comprehensive system capable of general technical computing.
 
-                \item \weblink{fractal}{A Hardware-Accelerated Fractal
-                Renderer}: This product, coupled with a large report, was
-                written for an A-Level Computer Science qualification, however
-                continues to be maintained in a limited capacity. Using C,
-                OpenGL, and assembly language on a 64-bit Linux platform, the
-                final product was capable of rendering parametrisable
-                self-similar two-dimensional fractals to an X11 window using
-                distributed computing paradigms.
+    \item \weblink{fractal}{A Hardware-Accelerated Fractal Renderer}: This
+    product, coupled with a large report, was written for an A-level Computer
+    Science qualification, however continues to be maintained in a limited
+    capacity. Using C, OpenGL, and assembly language on a 64-bit Linux platform,
+    the final product was capable of rendering parametrisable fractals using
+    distributed computing paradigms.
 
-                \item \gistlink{}{GitHub Gists Library}: A collection of modular
-                and extensible implementations of canonical algorithms and
-                abstract data structures which pervade classical Computer
-                Science and Software Engineering. Selected contributions include
-                a Hamming Weight benchmarking toolkit, an optimised
-                implementation of a string-formatter, and a visual demonstration
-                of dynamic allocation, intended for the education of
-                undergraduate Computer Science and Electronic Engineering
-                students.
-        \end{itemize}
-        \item A matured acquaintance with the \TeX\ and \LaTeX\ typesetting
-        systems. In addition to the aforementioned Programming Support Session
-        scripts, which were wholly set with \LaTeX, I have an array of similarly
-        technical document-preparation projects:
-        \begin{itemize}
-                \item \githublink{MS1GP}{\textit{Mathematical Skills} Group
-                Project}: A small set of documents covering Category Theory,
-                with a particular focus on its parallels to functional
-                programming and The $\lambda$-Calculus. The repository
-                includes a report and large \textit{Beamer} presentation,
-                throughout which abstract concepts are substantiated with
-                concrete examples in the Haskell programming language. A
-                collection of Bash shell scripts was also developed to
-                facilitate effective management and deployment of this project.
+    \item \gistlink{}{GitHub Gists Library}: A collection of modular and
+    extensible implementations of canonical algorithms and abstract data
+    structures which pervade classical Computer Science and Software
+    Engineering. Selected contributions include a Hamming Weight benchmarking
+    toolkit, an optimised implementation of a string-formatter, and a visual
+    demonstration of dynamic allocation, intended for the education of
+    undergraduate Computer Science and Electronic Engineering students.
+  \end{itemize}
+  \item Through my long involvement in open-source communities, and working in
+  University special-interest societies, I have established an understanding of
+  foundational team-based development processes including agile and continuous
+  techniques. I strongly value, and continually endeavour to improve, the
+  qualities of efficient communication amongst small teams when working
+  collaboratively: this includes experience with unit testing in a large
+  selection of languages, including for projects using multiple stacks requiring
+  uniform testing.
+  \item A matured acquaintance with the \TeX\ and \LaTeX\ typesetting systems.
+  In addition to the aforementioned Programming Support Session scripts, which
+  were wholly set with \LaTeX, I have an array of similarly technical
+  document-preparation projects:
+  \begin{itemize}
+    \item \githublink{MS1GP}{\textit{Mathematical Skills} Group Project}: A
+    small set of documents covering Category Theory, with a particular focus on
+    its parallels to functional programming. The repository includes a report
+    and large presentation, throughout which abstract concepts are substantiated
+    with concrete examples in the Haskell programming language. A collection of
+    Bash shell scripts was also developed to facilitate effective management and
+    deployment of this project.
 
-                \item \githublink{cv}{Curriculum Vitae}: The sources of my CV
-                demonstrate understanding of imperative and declarative design
-                principles for non-trivial typesetting tasks.
-        \end{itemize}
-        \item A familiarity with the Wolfram \textit{Mathematica} technical
-        computing system, particularly in the research areas of Automated
-        Theorem-Proving and Distributed Workflows. A small cache of
-        \textit{Mathematica} notebooks can be found on
-        \weblink{misc\_mma}{my University web instance}.
+    \item \githublink{cv}{Curriculum Vitae}: The sources of my CV demonstrate
+    understanding of imperative and declarative design principles for
+    non-trivial typesetting tasks.
+  \end{itemize}
+  \item A familiarity with the Wolfram \textit{Mathematica} technical
+  computing system, particularly in the research areas of Automated
+  Theorem-Proving and Distributed Workflows. A small cache of
+  \textit{Mathematica} notebooks can be found on
+  \weblink{misc\_mma}{my University web instance}.
 \end{itemize}
-%
-% MAJOR SECTION: References
-%
+
 \section{References}
 References are available upon request.
-%
 \end{document}
 
