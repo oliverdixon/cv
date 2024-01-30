@@ -1,21 +1,24 @@
-% Oliver Dixon's Curriculum Vitae (Public Copy, no WE)
-% OWD, 2023
+% Oliver Dixon's Curriculum Vitae (Public Copy)
+% OWD, 2023--2024
 
-\loop\iftrue
-    \errmessage{Are you sure that you want to TeX my CV? :)}
-\repeat
+% TODO SUMMARY IS INCORRECT/OUTDATED
+% TODO CREDIT-WEIGHTED AVERAGE GRADES NEED ADDING TO UoY SECTION
+% TODO UPDATE COURSE DETAILS: "MEng Computer Systems with a Year in Industry"
 
 \documentclass{article}
 
 \usepackage[a4paper, margin=30mm]{geometry}
-\usepackage{graphicx, titlesec, tabularx}
-\usepackage[colorlinks, allcolors=blue]{hyperref}
+\usepackage{graphicx, titlesec, tabularx, fancyhdr, lastpage}
+\usepackage[calc, en-GB]{datetime2}
+\usepackage{xcolor, hyperref}
 
-% Included social icons may have a page group defined; these will not clash with
-% the master document page groups, so it is safe to suppress this warning.
+% Document-level and sectioning configuration
+
+\title{Curriculum Vitae}
+\author{Oliver Dixon}
+
 \pdfsuppresswarningpagegroup=1
-
-\renewcommand\baselinestretch{1.1}
+\renewcommand\baselinestretch{1.2}
 \setlength\parindent{0pt}
 
 \titleformat\section{\centering\Large\scshape}{}{0pt}{}
@@ -23,90 +26,108 @@
 \newcommand\midtilde{\raisebox{.5ex}{\texttildelow}}
 \newcommand\textline{\par\rule{\textwidth}{.4pt}\par}
 
-\title{Curriculum Vitae}
-\author{Oliver Dixon}
+% Hyperlink configuration
 
-% \githublink: expand to a clickable link to the ... GitHub ...\ site
-% \gistlink : ... GitHub Gist ...
-% \weblink  : ... York HTTP instance ....
-%
-%     #1: The URL suffix;
-%     #2: The display name.
-%
-\newcommand\githublink[2]{\href{https://github.com/oliverdixon/#1}{#2}}
-\newcommand\gistlink[2]{\href{https://gist.github.com/oliverdixon/#1}{#2}}
-\newcommand\weblink[2]{\href{https://www-users.york.ac.uk/~od641/#1}{#2}}
+\definecolor{lightred}{RGB}{255, 153, 153}
+\hypersetup{urlbordercolor=lightred}
+\newcommand\compactlink[2]{\mbox{\href{#1}{#2\strut}}}
 
-% \socialicon: prints a small social media icon
-%
-%     #1: the icon file;
-%     #2: the amount by which the icon should be raised.
-%
-\newcommand\socialicon[2]
-    {\raisebox{-#2}{\includegraphics[width=.8em]{icons/#1}}}
+% External resource prefix definitions
+
+\newcommand\ghprefix{https://github.com/oliverdixon/}
+\newcommand\ghgprefix{https://gist.github.com/oliverdixon/}
+\newcommand\webprefix{https://www-users.york.ac.uk/~od641/}
+
+\newcommand\socialicon[1]
+    {\raisebox{-1pt}{\includegraphics[width=1em]{icons/#1}}}
+
+% Header and footer configuration
+
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{\headrulewidth}
+\DTMsavenow{today}
+
+\fancypagestyle{first}{
+    \fancyhf{}
+    \fancyfoot[C]{\textit{Curriculum Vitae:
+        \DTMmonthname{\DTMfetchmonth{today}},~\DTMfetchyear{today}}}
+}
+
+\fancypagestyle{body}{
+    \fancyhf{}
+    \fancyfoot[C]{\textit{Page~\thepage~of~\pageref*{LastPage}}}
+}
+
+\pagestyle{body}
 
 \begin{document}
 \phantomsection
+\thispagestyle{first}
 \makeatletter
 \addcontentsline{toc}{chapter}{\@author: \@title}
 \makeatother
 \begin{center}
-    \begingroup
-    \sffamily\large
+    \large
     \makeatletter
     \setlength\tabcolsep{0pt}
     \renewcommand\arraystretch{1.3}
     \begin{tabularx}{\textwidth}{Xr@{\hspace{10pt}}c}
         \Large\textbf{\@author} &
-            \githublink{}{github.com/oliverdixon} &
-            \socialicon{github}{1pt} \\
+            \compactlink{\ghprefix}{github.com/oliverdixon} &
+            \socialicon{github} \\
         {} &
-            \weblink{}{www-users.york.ac.uk/\midtilde{}od641} &
-            \socialicon{internet}{1pt} \\
+            \compactlink{\webprefix}{www-users.york.ac.uk/\midtilde{}od641} &
+            \socialicon{internet} \\
         7 Earle Street, York, YO31 8LJ &
-            \href{tel:+447341416944}{+44 (0) 7341416944} &
-            \socialicon{telephone}{2pt} \\
-        Mathematics \& Computer Science Student &
-            \href{mailto:od641@york.ac.uk}{od641@york.ac.uk} &
-            \socialicon{email}{-.5pt}
+            \compactlink{tel:+447341416944}{+44 (0) 7341416944} &
+            \socialicon{telephone} \\
+        Computer Science Undergraduate Student &
+            \compactlink{mailto:od641@york.ac.uk}{od641@york.ac.uk} &
+            \socialicon{email}
     \end{tabularx}
     \makeatother
-    \endgroup
 \end{center}
 \textline\vspace{2em}
 \phantomsection\addcontentsline{toc}{section}{Summary}
 I am a Mathematics and Computer Science joint honours undergraduate student at
 the University of York, currently seeking a Year in Industry while averaging
 over 80\% in academic disciplines. In addition to having a keen and
-long-established interest in Mathematics and Theoretical Computer Science,
-I am well-versed in a diverse range of practical technologies including C, C++,
-Java, Haskell, \LaTeX{}, SQL, Python, and a variety of other scripting
-languages. These act in complement to my demonstrable abilities in strong
-leadership, communication, and organisation. I am enthusiastic to participate
-in a high-pressure and client-oriented environment, and I anticipate to exploit
-my problem-solving and analytical skills, gained through the study of
-Mathematics and a decade of software-development experience, to devise efficient
-solutions that satisfy clients' criteria.
+long-established interest in Mathematics and Theoretical Computer Science, I am
+well-versed in a diverse range of practical technologies including C, C++, Java,
+Haskell, \LaTeX{}, SQL, Python, and a variety of other scripting languages.
+These act in complement to my demonstrable abilities in strong leadership,
+communication, and organisation. I am enthusiastic to participate in a
+high-pressure and client-oriented environment, and I anticipate to exploit my
+problem-solving and analytical skills, gained through the study of Mathematics
+and a decade of software-development experience, to devise efficient solutions
+that satisfy clients' criteria.
+
+\section{Experience}
+\begin{itemize}
+    \item \textbf{July 2024--September 2025, Thales Underwater Systems Ltd.}
+        \begin{itemize}
+            \item Embedded Software Engineer
+            \item Full UK Security Clearance (UKSV/SC)
+        \end{itemize}
+\end{itemize}
 
 \section{Education}
 \begin{itemize}
-    \item \textbf{2022--Present, University of York (MMath)}
+    \item \textbf{2022--Present, University of York (MEng)}
     \begin{itemize}
-        \item MMath Mathematics and Computer Science, with a Year in
-            Industry.\par\emph{In progress, with an expected graduation date of
-            September 2027. Some first-year grades are currently pending due to
-            the ongoing Marking and Assessment boycott.}
-        \item Computer Science: Software Part 1: 95\%; Theory: 88\%; Software
-            Part 2: 67\%.
-        \item Mathematics: Mathematical Skills: 86\%; Calculus: TBC;
-            Algebra: 66\%.
+        \item MEng Computer Systems with a Year in Industry (Computer Science
+            with Mathematics modules). \emph{In progress, with an expected
+            graduation date of September 2027.}
+        \item Technical Consultant of the York Engineering Society
+        \item First-Year Average: TODO\%
+        \item Second-Year Average: TODO\%
     \end{itemize}
     \item \textbf{2018--2020, Wakefield College (A-Levels)}
     \begin{itemize}
-        \item A-level Mathematics (\textbf{A})
-        \item A-level Further Mathematics (\textbf{A})
-        \item A-level Computer Science (\textbf{A})
-        \item A-level History (\textbf{A})
+        \item A-Level Mathematics (\textbf{A})
+        \item A-Level Further Mathematics (\textbf{A})
+        \item A-Level Computer Science (\textbf{A})
+        \item A-Level History (\textbf{A})
     \end{itemize}
     \item \textbf{2015--2018, Outwood Grange Academy (GCSEs)}
     \begin{itemize}
@@ -115,51 +136,55 @@ solutions that satisfy clients' criteria.
     \end{itemize}
 \end{itemize}
 
-\section{Experience and Technical Skills}
+\section{Technical Skills}
 Whilst I am constantly concerned with the continual development of my commercial
 and managerial aptitude, a wide variety of experiences has allowed me to
 ascertain a significant set of skills bound to be invaluable to any employer.
 \begin{itemize}
     \item Expertise---substantiated by over a decade's experience---in the C,
         C++, and Java programming languages, the latter of which have allowed me
-        to form a solid understanding of modern object-oriented design patterns.
+        to form a solid understanding of modern object-oriented design patterns,
+        particularly in the context of embedded and bare-metal platforms.
         Some expositions of relevant work can be found on GitHub and my
         University website; brief descriptions are provided below.
     \begin{itemize}
-        \item \weblink{pss}{Programming Support Sessions}: During my tenure as
-        the Technical Director of the University of York Electronics Society
-        (\textit{EngSoc}, formerly \textit{ShockSoc}) throughout 2022, I
-        compiled and delivered a full course of the C programming language to
-        large cohorts of undergraduate students studying various branches of
-        Engineering.
+        \item \compactlink{\webprefix pss}{Programming Support Sessions}: During
+            my tenure as the Technical Director of the University of York
+            Electronics Society (\textit{EngSoc}, formerly \textit{ShockSoc})
+            throughout 2022, I compiled and delivered a full course of the C
+            programming language to large cohorts of undergraduate students
+            studying various branches of Engineering.
 
-        During the orchestration of this project, in the interests of securing a
-        successful execution, I demonstrated impeccable long-term organisational
-        and leadership skills: this included administration of the Societal and
-        Departmental assets, and management of all interested parties.
+            During the orchestration of this project, in the interests of
+            securing a successful execution, I demonstrated impeccable long-term
+            organisational and leadership skills: this included administration
+            of the Societal and Departmental assets, and management of all
+            interested parties.
 
-        \item \githublink{calculator-demo}{A Work-In-Progress Computer Algebra
-        System}: This project unifies efficient and refined implementations of
-        algorithms that are integral for mathematical computing applications,
-        such as the parsing of expressions and stack-based evaluation. The
-        codebase is under active development, with the eventual goal of
-        producing a comprehensive system capable of general technical computing.
+        \item \compactlink{\ghprefix calculator-demo}{A Work-In-Progress
+            Computer Algebra System}: This project unifies efficient and refined
+            implementations of algorithms that are integral for mathematical
+            computing applications, such as the parsing of expressions and
+            stack-based evaluation. The codebase is under active development,
+            with the eventual goal of producing a comprehensive system capable
+            of general technical computing.
 
-        \item \weblink{fractal}{A Hardware-Accelerated Fractal Renderer}: This
-        product, coupled with a large report, was written for an A-level
-        Computer Science qualification, however continues to be maintained in a
-        limited capacity. Using C, OpenGL, and assembly language on a 64-bit
-        Linux platform, the final product was capable of rendering
-        parametrisable fractals using distributed computing paradigms.
+        \item \compactlink{\webprefix fractal}{A Hardware-Accelerated Fractal
+            Renderer}: This product, coupled with a large report, was written
+            for an A-level Computer Science qualification, however continues to
+            be maintained in a limited capacity. Using C, OpenGL, and assembly
+            language on a 64-bit Linux platform, the final product was capable
+            of rendering parametrisable fractals using distributed computing
+            paradigms.
 
-        \item \gistlink{}{GitHub Gists Library}: A collection of modular and
-        extensible implementations of canonical algorithms and abstract data
-        structures which pervade classical Computer Science and Software
-        Engineering. Selected contributions include a Hamming Weight
-        benchmarking toolkit, an optimised implementation of a string-formatter,
-        and a visual demonstration of dynamic allocation, intended for the
-        education of undergraduate Computer Science and Electronic Engineering
-        students.
+        \item \compactlink{\ghgprefix}{GitHub Gists Library}: A collection of
+            modular and extensible implementations of standard algorithms and
+            abstract data structures which pervade classical Computer Science
+            and Software Engineering. Selected contributions include a Hamming
+            Weight benchmarking toolkit, an optimised implementation of a
+            string-formatter, and a visual demonstration of dynamic allocation,
+            intended for the education of undergraduate Computer Science and
+            Electronic Engineering students.
     \end{itemize}
     \item Through my long involvement in open-source communities, and working in
     University special-interest societies, I have established an understanding
@@ -175,26 +200,28 @@ ascertain a significant set of skills bound to be invaluable to any employer.
     were wholly set with \LaTeX, I have an array of similarly technical
     document-preparation projects:
     \begin{itemize}
-        \item \githublink{MS1GP}{\textit{Mathematical Skills} Group Project}: A
-        small set of documents covering Category Theory, with a particular focus
-        on its parallels to functional programming. The repository includes a
-        report and large presentation, throughout which abstract concepts are
-        substantiated with concrete examples in the Haskell programming
-        language. A collection of Bash shell scripts was also developed to
-        facilitate effective management and deployment of this project.
+        \item \compactlink{\ghprefix MS1GP}{\textit{Mathematical Skills} Group
+            Project}: A small set of documents covering Category Theory, with a
+            particular focus on its parallels to functional programming. The
+            repository includes a report and large presentation, throughout
+            which abstract concepts are substantiated with concrete examples in
+            the Haskell programming language. A collection of Bash shell scripts
+            was also developed to facilitate effective management and deployment
+            of this project.
 
-        \item \githublink{cv}{Curriculum Vitae}: The sources of my CV
-        demonstrate understanding of imperative and declarative design
-        principles for non-trivial typesetting tasks.
+        \item \compactlink{\ghprefix cv}{Curriculum Vitae}: The sources of my CV
+            demonstrate understanding of imperative and declarative design
+            principles for non-trivial typesetting tasks.
     \end{itemize}
     \item A familiarity with the Wolfram \textit{Mathematica} technical
-    computing system, particularly in the research areas of Automated
-    Theorem-Proving and Distributed Workflows. A small cache of
-    \textit{Mathematica} notebooks can be found on
-    \weblink{misc\_mma}{my University web instance}.
+        computing system, particularly in the research areas of Automated
+        Theorem-Proving and Distributed Workflows. A small cache of
+        \textit{Mathematica} notebooks can be found on \compactlink{\webprefix
+        misc\_mma}{my University web instance}.
 \end{itemize}
 
 \section{References}
-References are available upon request.
+References from academic faculty members and previous employers are available
+upon request.
 \end{document}
 
