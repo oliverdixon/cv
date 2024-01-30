@@ -12,6 +12,15 @@
 \usepackage[calc, en-GB]{datetime2}
 \usepackage{xcolor, hyperref}
 
+\usepackage[
+    text={\bfseries Incomplete! Do not distribute.},
+    angle=90,
+    hanchor=l,
+    hpos=.06\paperwidth,
+    fontsize=12pt,
+    scale=2
+]{draftwatermark}
+
 % Document-level and sectioning configuration
 
 \title{Curriculum Vitae}
@@ -46,17 +55,22 @@
 \renewcommand\headrulewidth{0pt}
 \renewcommand\footrulewidth{\headrulewidth}
 \DTMsavenow{today}
+\newcommand\cvdate{Curriculum Vitae:
+    \DTMmonthname{\DTMfetchmonth{today}},~\DTMfetchyear{today}}
 
 \fancypagestyle{first}{
     \fancyhf{}
-    \fancyfoot[C]{\textit{Curriculum Vitae:
-        \DTMmonthname{\DTMfetchmonth{today}},~\DTMfetchyear{today}}}
+    \fancyfoot[C]{\textit{\cvdate}}
 }
 
+\makeatletter
 \fancypagestyle{body}{
     \fancyhf{}
+    \fancyhead[L]{\textit{\cvdate}}
+    \fancyhead[R]{\textit{\@author~(University of York)}}
     \fancyfoot[C]{\textit{Page~\thepage~of~\pageref*{LastPage}}}
 }
+\makeatother
 
 \pagestyle{body}
 
